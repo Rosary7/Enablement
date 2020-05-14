@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -26,8 +27,8 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class LoggingAspectConfig {
-	private static final Logger LOGGER = LogManager.getLogger(LoggingAspectConfig.class);
+public class AspectConfig {
+	private static final Logger LOGGER = LogManager.getLogger(AspectConfig.class);
 
 	// This advice will be executed around all calls to public methods of classes from the com.sb.rest package.
 	// ProceedingJoinPoint to get the method name for our join point.
@@ -45,6 +46,7 @@ public class LoggingAspectConfig {
 
 		return result;
 	}
+	
 	/*
 	 Where-
 		1. @Before   : The code written in this is executed before calling of actual method
@@ -55,7 +57,14 @@ public class LoggingAspectConfig {
 	 */
 	@Before("execution(* com.sb.rest.*.add*(*))")
     public void callSetters(JoinPoint joinPoint) {
-		LOGGER.info("...Logging  using AOP @@Before Advice ... : " +"Method Invoked: " + joinPoint.getSignature().getName());
-		LOGGER.info("...Logging  using AOP @@Before Advice ... : " +"Param value Passed: " + joinPoint.getArgs()[0].toString());
+		LOGGER.info("...Logging  using AOP @Before Advice ... : " +"Method Invoked: " + joinPoint.getSignature().getName());
+		LOGGER.info("...Logging  using AOP @Before Advice ... : " +"Param value Passed: " + joinPoint.getArgs()[0].toString());
+    }
+	
+	
+	@AfterThrowing(pointcut = "execution(* com.sb.*.*.*(..))", throwing = "ex")
+    public void logError(Exception ex) {
+		LOGGER.info("...Logging  using AOP @AfterThrowing Advice ... : " );
+        ex.printStackTrace();
     }
 }
