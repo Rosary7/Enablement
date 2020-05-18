@@ -1,0 +1,159 @@
+
+
+We are using H2 database:
+
+Employee-
+
+Get:
+http://localhost:8080/api/v1/getAllEmployees
+
+O/P:
+[
+    {
+        "id": 1,
+        "firstName": "Peter",
+        "lastName": "North",
+        "emailId": "abc@gmail.com"
+    },
+    {
+        "id": 2,
+        "firstName": "Mani",
+        "lastName": "Kumar",
+        "emailId": "efg@gmail.com"
+    }
+]
+---------------------------------
+Post :
+
+http://localhost:8080/api/v1/createEmployee
+
+I/P:
+    {
+        "firstName": "aaa1",
+        "lastName": "yyy1",
+        "emailId": "xy1@gmail.com"
+    }
+----------------------------------
+Get :
+
+Error msg for wrong empId:
+http://localhost:8080/api/v1/getEmployeeById/21  
+
+O/P:
+{
+    "timestamp": "2020-04-28T09:04:09.854+0000",
+    "status": 404,
+    "error": "Not Found",
+    "message": "Could not find employee with id- 211",
+    "path": "/api/v1/getEmployeeById/21"
+}
+
+For correct empId:
+http://localhost:8080/api/v1/getEmployeeById/2:
+
+O/P:
+{
+    "id": 2,
+    "firstName": "aaa1",
+    "lastName": "yyy1",
+    "emailId": "xy1@gmail.com"
+}
+
+----------------------------------
+Put :
+
+http://localhost:8080/api/v1/updateEmpById/1
+
+I/P:
+{
+    "id": 1,
+    "firstName": "aaaaa1",
+    "lastName": "yyyyy1",
+    "emailId": "xyqq1@gmail.com"
+}
+----------------------------------
+Get:
+Using Custom query and  @PathVariable
+http://localhost:8080/api/v1/getAllEmpByFirstName/aaa1
+----------------------------------
+Get:
+Using  @RequestParam
+http://localhost:8080/api/v1/getAllEmpByLastName?lastName=Kumar
+----------------------------------
+Get:
+Using  'query method name' with 'Or' keyword
+http://localhost:8080/api/v1/getByFirstNameOrLastName?firstName=Peter&lastName=North
+
+-------------------------------------
+-------------------------------------
+
+User-
+
+Get:
+http://localhost:8080/api/v1/getAllUsers
+
+O/P:
+[
+    {
+        "id": 1,
+        "firstName": "Peter",
+        "lastName": "North",
+        "emailId": "abc@gmail.com"
+    },
+    {
+        "id": 2,
+        "firstName": "Mani",
+        "lastName": "Kumar",
+        "emailId": "efg@gmail.com"
+    }
+]
+---------------------------------
+Post :
+
+http://localhost:8080/api/v1/createUser
+
+I/P:
+    {
+        "firstName": "aaa1",
+        "lastName": "yyy1",
+        "emailId": "xy1@gmail.com"
+    }
+----------------------------------
+Get :
+
+Error msg for wrong empId:
+http://localhost:8080/api/v1/getEmployeeById/21  
+
+O/P:
+{
+    "timestamp": "2020-04-28T09:04:09.854+0000",
+    "status": 404,
+    "error": "Not Found",
+    "message": "Could not find employee with id- 211",
+    "path": "/api/v1/getEmployeeById/21"
+}
+
+------------------------------------------
+To include Lambok and avoid 'log' error:
+
+		 <dependency>
+	        <groupId>org.projectlombok</groupId>
+	        <artifactId>lombok</artifactId>
+	        <version>1.18.10</version>
+	        <scope>provided</scope>
+         </dependency>
+  
+ In the eclipse folder - C:\MySoftwares\eclipse ,do following:     
+ i) Add 'lombok-1.18.10.jar' jar    
+ ii Add below line in 'eclipse.ini' file
+    -javaagent:lombok-1.18.10.jar
+ iii) Clean build 
+    
+----------------------------
+ h2 Console: 
+ 	http://localhost:8080/console/
+ 
+ ----------------------------
+ 
+ 
+ 
