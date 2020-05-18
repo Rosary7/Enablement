@@ -1,0 +1,35 @@
+How to download Kafka and setting the environment in Windows?
+
+i) Download Single node Kafka cluster (binary downloads)
+•	http://kafka.apache.org/downloads
+(https://mirrors.estointernet.in/apache/kafka/2.5.0/kafka_2.12-2.5.0.tgz)
+
+ii)Configure the Zookeeper Properties:
+•	After downloading it, unzip it. 
+   o	eg: H:\kafka_2.12-2.5.0
+•	Create a folder with the name of 'zookeeper' to keep the file log. 
+   o	eg: H:\kafka_2.12-2.5.0\zookeeper
+•	In the Kafka config directory edit the zookeeper.properties file and change the following line,
+   o	dataDir = H:\kafka_2.12-2.5.0\config\zookeeper.properties
+
+iii)Configure the Kafka Server Properties:
+•	Create a folder named 'kafka_log ') in the Kafka folder ,to keep the log file.
+    o	 eg: H:\kafka_2.12-2.5.0\kafka_log
+•	In the Kafka config directory edit the server.properties file and change the following lines-
+    o	log.dirs=H:\kafka_2.12-2.5.0\kafka-logs
+    o	offsets.topic.num.partitions=1 
+    o	offsets.topic.replication.factor=1
+    o	transaction.state.log.replication.factor=1
+    o	transaction.state.log.min.isr=1
+    o	min.inaync.replicas=1    
+    o	default.replication.factor=1
+
+iv)Add Kafka path Environment Variable.
+•	Path = H:\kafka_2.12-2.5.0\bin\windows
+
+How to start ZooKeeper and Kafka servers?
+Go to the  “<kafka home>\ bin\windows” folder and issue following commands.
+•	Start ZooKeeper:
+  o	H:\kafka_2.12-2.5.0\bin\windows  > zookeeper-server-start.bat H:\kafka_2.12-2.5.0\config\zookeeper.properties  
+•	Start the Kafka local cluster:
+  o	H:\kafka_2.12-2.5.0\bin\windows  > kafka-server-start.bat H:\kafka_2.12-2.5.0\config\server.properties
