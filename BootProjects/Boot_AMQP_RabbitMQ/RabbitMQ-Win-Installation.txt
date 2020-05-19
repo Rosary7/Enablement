@@ -1,0 +1,12 @@
+RabbitMQ Windows Installation, Environment setup and Starting Server:
+i) Install Erlang (otp_win64_22.3.exe)
+ii) Install rabbitmq (rabbitmq-server-3.8.3.exe)
+iii) Set environment variables:
+	ERLANG_HOME = C:\Program Files\erl10.7\
+	Path =  ;%ERLANG_HOME%\bin;
+iv)Run once the plugin bat -
+   	C:\Program Files\RabbitMQ Server\rabbitmq_server-3.8.3\sbin>rabbitmq-plugins.bat enable rabbitmq_management
+v) Start RabbitMQ server-
+    C:\Program Files\RabbitMQ Server\rabbitmq_server-3.8.3\sbin>rabbitmq-server.bat
+vi) RabbitMQ console:
+    http://localhost:15672/  
