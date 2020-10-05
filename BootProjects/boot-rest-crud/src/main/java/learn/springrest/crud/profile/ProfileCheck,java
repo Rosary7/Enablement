@@ -1,0 +1,41 @@
+package learn.springrest.crud.profile;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+
+/*
+  @Profile:  can be used in both class and method level.
+  
+  @Qualifier vs @Primary:
+  By including the @Qualifier annotation together with the name of the specific implementation we want to use – in this example, Foo – we can avoid ambiguity when Spring finds multiple beans of the same type
+  The @Primary used to decide which bean to inject when ambiguity is present regarding dependency injection.
+
+
+ */
+
+@Configuration
+public class ProfileCheck {
+	
+	@Bean
+	//@Primary
+	//@Qualifier("testdev")
+	@Profile("dev")
+	public Project devDataSource() {
+		Project p = new Project();
+		p.setProjectCodeVersion("Dev Ver");
+		return p;
+	}
+	
+	@Bean
+	@Qualifier("testprod")
+	@Profile("prod")
+	public Project prodDataSource() {
+		Project p = new Project();
+		p.setProjectCodeVersion("Prod Ver");
+		return p;
+	}
+	
+}
